@@ -1,0 +1,209 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.6-ext                               |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     1.6;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Ventilator 2 way splitter with restrictor
+// daniel.duke@monash.edu
+// Last Updated 27/03/2020
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+castellatedMesh true;
+snap            true;
+addLayers       true;
+
+
+geometry
+{
+    inlet.stl
+    {
+        type triSurfaceMesh;
+        name inlet;
+    }
+
+    outlet_wr.stl
+    {
+        type triSurfaceMesh;
+        name outlet_wr;
+    }
+
+    outlet_ur.stl
+    {
+        type triSurfaceMesh;
+        name outlet_ur;
+    }
+
+    walls.stl
+    {
+        type triSurfaceMesh;
+        name walls;
+    }
+
+    // Refinement Zones (custom)
+    refineRestriction 
+    {
+        type searchableCylinder;
+        point1 (45 0 0);
+        point2 (105 0 0);
+        radius 5.5;
+    }
+
+    refineSplit
+    {
+	    type searchableBox;
+	    min (100 -14 -12);
+	    max (190 62 12);
+    }
+};
+
+
+castellatedMeshControls
+{
+    maxLocalCells   100000000;
+    maxGlobalCells  100000000;
+    minRefinementCells 10;
+    maxLoadUnbalance 0.10;
+    nCellsBetweenLevels 5;
+    features
+    (
+	{
+		file "walls.eMesh";
+		level 1;
+	}
+    );
+    refinementSurfaces
+    {
+	    inlet
+        {
+            level (1 1);
+        }
+
+	    outlet_ur
+        {
+            level (1 1);
+        }
+
+	    outlet_wr
+        {
+            level (1 1);
+        }
+
+        walls
+        {
+            level (1 2); // this is the minimum to avoid snapping problems that may crash snappyHexMesh.
+            gapLevelIncrement 2;
+	}
+    }
+    resolveFeatureAngle 30;
+
+    refinementRegions
+    {
+	refineRestriction
+        {
+	    mode inside;
+	    levels ((1 1));
+        }
+
+	refineSplit
+        {
+	    mode inside;
+	    levels ((0 1));
+        }
+    }
+
+    // Inside the STL volume 
+    locationInMesh (172 25 0);
+
+    allowFreeStandingZoneFaces true;
+}
+
+snapControls
+{
+    nSmoothPatch 3;
+    tolerance 4.0;
+    nSolveIter 30;
+    nRelaxIter 5;
+    nFeatureSnapIter 10;
+}
+
+addLayersControls
+{
+    relativeSizes true;
+    
+    layers
+    {
+	/*
+        "walls"
+        {
+            nSurfaceLayers 5;
+        }
+     
+        "inlet"
+        {
+              nSurfaceLayers 5;
+        }
+
+        "outlet_wr"
+        {
+              nSurfaceLayers 5;
+        }
+
+        "outlet_ur"
+        {
+              nSurfaceLayers 5;
+        }
+	*/
+    }
+
+    expansionRatio 1;
+    finalLayerThickness 0.5;
+    minThickness 0.1;
+    nGrow 0;
+    featureAngle 60;
+    nRelaxIter 8;
+    nSmoothSurfaceNormals 3;
+    nSmoothNormals 10;
+    nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedianAxisAngle 130;
+    nBufferCellsNoExtrude 0;
+    nLayerIter 30;
+}
+
+meshQualityControls
+{
+    maxNonOrtho 65; //80;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4; //5;
+    maxConcave 80;
+    minVol 1e-13;
+    minTetQuality 1e-30;
+    minArea -1;
+    minTwist 0.02;
+    minDeterminant 0.001;
+    minFaceWeight 0.02;
+    minVolRatio 0.01;
+    minTriangleTwist -1;
+    nSmoothScale 4;
+    errorReduction 0.75;
+}
+
+
+// 0 : only write final meshes
+// 1 : write intermediate meshes
+// 2 : write volScalarField with cellLevel for postprocessing
+// 4 : write current intersections as .obj files
+debug 0;
+
+mergeTolerance 1e-6;

@@ -1,0 +1,54 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     3.2                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    walls
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+
+    inlet
+    {
+        // Pressure control mode
+	type	pressureInletOutletVelocity; 
+	value           uniform (0 0 0);
+
+	/* ********** Volume control mode **********************
+	type	 	flowRateInletVelocity;
+	flowRate	0.00118; // 60 L/min = 0.001 m3/s = 0.00118 kg/s at STP
+        value           uniform (0 0 0);	
+	******************************************************** */
+    }
+
+    outlet_ur
+    {
+        type            fluxCorrectedVelocity; //zeroGradient;
+    }
+
+    outlet_wr
+    {
+        type            fluxCorrectedVelocity; //zeroGradient;
+    }
+
+}
+
+// ************************************************************************* //

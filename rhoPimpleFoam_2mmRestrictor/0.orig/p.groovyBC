@@ -1,0 +1,117 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     3.2                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 100490.33;
+
+boundaryField
+{
+    walls
+    {
+        type            zeroGradient;
+    }
+
+    inlet
+    {
+        type            timeVaryingTotalPressure;
+        p0              100000; // only used for restarts
+        outOfBounds     clamp;
+        fileName        "$FOAM_CASE/constant/inlet_pressure_pc";
+        U               U;
+        phi             phi;
+        rho             rho;
+        psi             none;
+        gamma           1;
+        value           uniform 100490.33;
+    }
+   
+    outlet_ur
+    {
+        /* 
+         Lung resistance and compliance function based on Plummer et al. (2020)
+        
+         Constants:
+         - Ri, Re = Lung resistance during inspiration/expiration [L/cmH2O]
+         - C      = Patient lung and airway compliance in ventilated range [cmH2O/(L/s)]
+         - Rv, Cv = Tubing resistance and compliance
+         - Vmax   = Total lung volume minus functional residual capacity [L]
+         - PEEP   = Positive end expiratory pressure, typ. also equal to starting pressure [cmH2O]
+         - pGauge = Offset from gauge pressure to absolute pressure, ie ~ atmospheric pressure
+         - p0max  = ceiling stagnation pressure
+            
+         Calculated parameters:
+         - v       = volume flowed [L]
+         - q       = flowrate [L/s]
+         - R       = instantaenous lung resistance [L/cmH2O]
+         - Cc      = instantaneous airway compliance, allowing for increasing
+                     stiffness approaching Vmax
+         - tau     = time constant [s]
+         - p0rc    = calculated outlet stagnation pressure [cmH2O]
+         - p0pa    = converted absolute stagnation pressure [Pa]
+        */
+
+        type    groovyBC;
+        valueExpression "p0lim - 0.5*rho*U&U";
+        variables ( "C=0.1;"
+                    "Ri=13.0;"
+                    "Re=12.0;"
+                    "Rv=22.0;"
+                    "Cv=0.004;"
+                    "Vmax=1.5;"
+                    "PEEP=5.0;"
+                    "pGauge=1e5;"
+                    "p0max=103e3;"
+                    "v=time()*sum(UMean&Sf())*1e3;"
+                    "q=sum(U&Sf())*1e3;"
+                    "R=(q>=0 ? Ri : Re);"
+                    "Cc=(v<Vmax ? C : C*exp(-3*(v-Vmax)));"
+                    "tau=(R*Cc)+(Rv*Cv)+(Rv*Cc);"
+                    "p0rc=(tau*q/Cc)+(v/Cc)+PEEP;"
+                    "p0pa=(p0rc*98.066)+pGauge;"
+                    "p0lim=(p0pa < p0max ? p0pa : p0max);"
+        );
+        
+        value uniform 100490.33; // initial value from time - varying inlet
+    }
+  
+    outlet_wr
+    {
+        type    groovyBC;
+        valueExpression "p0lim - 0.5*rho*U&U";
+        variables ( "C=0.2;"
+                    "Ri=13.0;"
+                    "Re=12.0;"
+                    "Rv=22.0;"
+                    "Cv=0.004;"
+                    "Vmax=1.5;"
+                    "PEEP=5.0;"
+                    "pGauge=1e5;"
+                    "v=time()*sum(UMean&Sf())*1e3;"
+                    "q=sum(U&Sf())*1e3;"
+                    "p0max=103e3;"
+                    "R=(q>=0 ? Ri : Re);"
+                    "Cc=(v<Vmax ? C : C*exp(-3*(v-Vmax)));"
+                    "tau=(R*Cc)+(Rv*Cv)+(Rv*Cc);"
+                    "p0rc=(tau*q/Cc)+(v/Cc)+PEEP;"
+                    "p0pa=(p0rc*98.066)+pGauge;"
+                    "p0lim=(p0pa < p0max ? p0pa : p0max);"
+        );
+
+        value uniform 100490.33; // initial value from time - varying inlet
+    }
+
+} 

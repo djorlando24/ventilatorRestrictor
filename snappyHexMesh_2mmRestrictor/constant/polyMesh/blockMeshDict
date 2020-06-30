@@ -1,0 +1,96 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| ========= | |
+| \\ / F ield | OpenFOAM: The Open Source CFD Toolbox |
+| \\ / O peration | Version: 2.0.1 |
+| \\ / A nd | Web: www.OpenFOAM.com |
+| \\/ M anipulation | |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+version 2.0;
+format ascii;
+class dictionary;
+object blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Ventilator splitter 2way with 1 restrictor
+// daniel.duke@monash.edu
+// Last Updated 27/03/2020
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1.0e0;   // STL file is in mm
+
+// Bounding box just large enough to capture STL
+vertices
+(
+	(  0 -14  -12)
+	(265 -14  -12)
+	(265  62  -12)
+	(  0  62  -12)
+	(  0 -14   12)
+	(265 -14   12)
+	(265  62   12)
+	(  0  62   12)
+);
+
+// bounding box is 265 x 76 x 24 mm
+// aspect is 11.04 : 3.17 : 1
+
+blocks
+(
+      hex (0 1 2 3 4 5 6 7) (177 51 16) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+      allBoundary
+      {
+            type patch;
+            faces (
+                  (0 1 2 3)
+		  (4 5 6 7)
+		  (7 6 2 3)
+   	          (4 5 1 0)
+		  (0 3 7 4)
+		  (1 2 6 5)
+            );
+      }
+
+      // For OF-2.x , comment out in OF-1.6-ext
+      inlet
+      {
+            type patch;
+            faces (
+            );
+      }
+
+      // For OF-2.x , comment out in OF-1.6-ext
+      outlet_ur
+      {
+            type patch;
+            faces (
+            );
+      }
+
+      outlet_wr
+      {
+            type patch;
+            faces (
+            );
+      }
+
+     walls
+     {
+	    type wall;
+	    faces (
+	    );
+     }
+);
+
+mergePatchPairs
+(
+);

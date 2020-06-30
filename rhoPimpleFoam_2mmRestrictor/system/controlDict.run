@@ -1,0 +1,215 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     3.2                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     rhoPimpleFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          nextWrite; //endTime;
+
+endTime         10;
+
+deltaT          5e-06; 
+
+//writeControl  timeStep;
+//writeInterval 1;
+
+writeControl    adjustableRunTime;
+writeInterval   0.02;
+
+purgeWrite      0;
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.5;
+
+maxDeltaT       5e-3;
+
+libs (
+     //    "libOpenFOAM.so"
+         "libsimpleSwakFunctionObjects.so" 
+         "libswakFunctionObjects.so"
+         "libgroovyBC.so"
+     );
+
+functions
+{
+    fieldAverage1
+    {           
+        type            fieldAverage;
+        functionObjectLibs ( "libfieldFunctionObjects.so" );
+        enabled         true;
+        cleanRestart    true;
+        outputControl   outputTime;
+        
+        fields  
+        (       
+            U
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+        );
+    }
+
+    volFlow_Lmin_inlet
+    {
+        type                swakExpression;
+        valueType           patch;
+        patchName           inlet;
+        
+        verbose             true;
+        expression          "U&Sf()*6e4";
+        accumulations       ( sum );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    volFlow_Lmin_outlet_ur
+    {
+        type                swakExpression;
+        valueType           patch;
+        patchName           outlet_ur;
+
+        verbose             true;
+        expression          "U&Sf()*6e4";
+        accumulations       ( sum );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    volFlow_Lmin_outlet_wr
+    {
+        type                swakExpression;
+        valueType           patch;
+        patchName           outlet_wr;
+
+        verbose             true;
+        expression          "U&Sf()*6e4";
+        accumulations       ( sum );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    volL_inlet
+    {
+        type                swakExpression;
+        valueType           patch;
+        patchName           inlet;
+        
+        verbose             true;
+        expression          "time()*(UMean&Sf())*1e3";
+        accumulations       ( sum );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    volL_outlet_ur
+    {
+        type                swakExpression;
+        valueType           patch;
+        patchName           outlet_ur;
+
+        verbose             true;
+        expression          "time()*(UMean&Sf())*1e3";
+        accumulations       ( sum );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    volL_outlet_wr
+    {
+        type                swakExpression;
+        valueType           patch;
+        patchName           outlet_wr;
+
+        verbose             true;
+        expression          "time()*(UMean&Sf())*1e3";
+        accumulations       ( sum );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    p0g_cmH2O_Inlet
+    {   
+        type                swakExpression;
+        valueType           patch;
+        patchName           inlet;
+        
+        verbose             true;
+        expression          "(p - 100000 + pow(mag(U),2)*0.5*rho)/98.0665";
+        accumulations       ( average );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    p0g_cmH2O_Outlet_ur
+    {   
+        type                swakExpression;
+        valueType           patch;
+        patchName           outlet_ur;
+        
+        verbose             true;
+        expression          "(p - 100000 + pow(mag(U),2)*0.5*rho)/98.0665";
+        accumulations       ( average );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    p0g_cmH2O_Outlet_wr
+    {   
+        type                swakExpression;
+        valueType           patch;
+        patchName           outlet_wr;
+
+        verbose             true;
+        expression          "(p - 100000 + pow(mag(U),2)*0.5*rho)/98.0665";
+        accumulations       ( average );
+        outputControlMode   timeStep;
+        outputInterval      1;
+        writeStartTime      no;
+    }
+
+    /*whatIsThere {
+        type listRegisteredObjects;
+    }*/
+}
+
+// ************************************************************************* //

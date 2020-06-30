@@ -1,0 +1,67 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     3.2                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  | For copyright notice see file Copyright         |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// PMDI nozzle - D Duke, LTRAC, Monash University
+// daniel.duke@monash.edu
+// Last Updated 16/05/18
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 100000; // outlet plenum initial value. Inlet defined by funkySetFields
+
+boundaryField
+{
+    inlet
+    {
+        type            totalPressure;
+        rho             none;
+        psi             none;
+        gamma           1.55;
+        p0              uniform 665000;
+        value           uniform 665000;
+    }
+    outlet_axial
+    {
+        type            transonicTotalPressure;
+	U		U;
+	phi		phiv;
+	rho		rho;
+	psi		none;
+	gamma		1.55;
+	p0		100000;
+	value		uniform 100000;
+    }
+    outlet_radial
+    {
+	type            transonicTotalPressure;
+        U               U;
+        phi             phiv;
+        rho             rho;
+        psi             none;
+        gamma           1.55;
+        p0              100000;
+        value           uniform 100000;
+    }
+    walls
+    {
+        type            zeroGradient;
+    }
+}
+
+
+// ************************************************************************* //

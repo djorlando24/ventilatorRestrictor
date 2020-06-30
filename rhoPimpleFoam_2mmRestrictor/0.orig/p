@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     3.2                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 100490.33;
+
+boundaryField
+{
+    walls
+    {
+        type            zeroGradient;
+    }
+
+    inlet
+    {
+        type            timeVaryingTotalPressure;
+        p0              100000; // only used for restarts
+        outOfBounds     clamp;
+        fileName        "$FOAM_CASE/constant/inlet_pressure_pc";
+        U               U;
+        phi             phi;
+        rho             rho;
+        psi             none;
+        gamma           1;
+        value           uniform 100490.33;
+    }
+   
+
+    // For first time step remove any dependence on UMean here
+    outlet_ur
+    {
+	type	zeroGradient;
+    }
+    
+    outlet_wr
+    {
+	type	zeroGradient;
+    }
+
+}
+
+// ************************************************************************* //

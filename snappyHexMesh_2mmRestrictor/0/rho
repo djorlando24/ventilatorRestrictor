@@ -1,0 +1,58 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:  3.0                                   |
+|   \\  /    A nd           | Web:         http://www.extend-project.de       |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volScalarField;
+    location    "0";
+    object      rho;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// PMDI nozzle - D Duke, LTRAC, Monash University
+// daniel.duke@monash.edu
+// Last Updated 02/05/18
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [1 -3 0 0 0 0 0];
+
+internalField   uniform 1110.646766;//16.20667194;
+boundaryField
+{
+    inlet //inflow boundary
+    {
+        type            thermDensity;
+        phi             phiv;
+        value           uniform 1110.646766;
+    }
+    
+    outlet_axial //outflow boundary
+    {
+        type            thermDensity;
+        phi             phiv;
+        inletValue      uniform 16.20667194;
+        value           uniform 16.20667194;
+    }
+
+    outlet_radial //outflow boundary
+    {
+        type            thermDensity;
+        phi             phiv;
+        inletValue      uniform 16.20667194;
+        value           uniform 16.20667194;
+    }
+
+    walls
+    {
+        type            zeroGradient;
+    }
+}
+
+
+// ************************************************************************* //
