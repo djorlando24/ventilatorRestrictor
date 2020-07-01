@@ -1,11 +1,28 @@
 #!/bin/bash
+#
+#    OPENFOAM MPIRUN SCRIPT
+#
+#    author Daniel Duke <daniel.duke@monash.edu>
+#    copyright (c) 2020 Daniel Duke
+#    license GPL-3.0+
+#    version 1.0.0
+#    date 01/07/2020
+#        __   ____________    ___    ______
+#       / /  /_  ____ __  \  /   |  / ____/
+#      / /    / /   / /_/ / / /| | / /
+#     / /___ / /   / _, _/ / ___ |/ /_________
+#    /_____//_/   /_/ |__\/_/  |_|\__________/
+#
+#    Laboratory for Turbulence Research in Aerospace & Combustion (LTRAC)
+#    Monash University, Australia
 
+# which solver to use
 app=rhoPimpleFoam
 
 # Load Foam-Extend 3.2
 source ~/foam/foam-extend-3.2/etc/bashrc
 
-
+# Find number of processors
 ncpu=`grep -e 'numberOfSubdomains' system/decomposeParDict  | cut -d' ' -f2 | tr -d \;`
 echo "$ncpu PROCESSORS IN decomposeParDict"
 

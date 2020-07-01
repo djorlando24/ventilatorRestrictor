@@ -1,10 +1,10 @@
 # 3D PRINTED VENTILATOR SPLITTER SIMULATION
 
     author Daniel Duke <daniel.duke@monash.edu>
-    copyright (c) 2020 LTRAC
+    copyright (c) 2020 Daniel Duke
     license GPL-3.0+
-    version 0.0.1
-    date 01/05/2020
+    version 1.0.0
+    date 01/07/2020
         __   ____________    ___    ______
        / /  /_  ____ __  \  /   |  / ____/
       / /    / /   / /_/ / / /| | / /

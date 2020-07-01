@@ -2,10 +2,10 @@
 OpenFOAM model for turbulent air flow in a ventilator splitter and restrictor
 
     author Daniel Duke <daniel.duke@monash.edu>
-    copyright (c) 2020 LTRAC
+    copyright (c) 2020 Daniel Duke
     license GPL-3.0+
     version 1.0.0
-    date 30/07/2020
+    date 01/07/2020
         __   ____________    ___    ______
        / /  /_  ____ __  \  /   |  / ____/
       / /    / /   / /_/ / / /| | / /

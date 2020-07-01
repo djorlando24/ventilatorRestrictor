@@ -1,11 +1,20 @@
 #!/bin/bash
-
-## * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-## PMDI nozzle - D Duke, LTRAC, Monash University
-## daniel.duke@monash.edu
-## Last Updated 18/04/18
-## * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
+#
+#    OPENFOAM SNAPPYHEXMESH SCRIPT
+#
+#    author Daniel Duke <daniel.duke@monash.edu>
+#    copyright (c) 2020 Daniel Duke
+#    license GPL-3.0+
+#    version 1.0.0
+#    date 01/07/2020
+#        __   ____________    ___    ______
+#       / /  /_  ____ __  \  /   |  / ____/
+#      / /    / /   / /_/ / / /| | / /
+#     / /___ / /   / _, _/ / ___ |/ /_________
+#    /_____//_/   /_/ |__\/_/  |_|\__________/
+#
+#    Laboratory for Turbulence Research in Aerospace & Combustion (LTRAC)
+#    Monash University, Australia
 
 echo "snappyHexMesh local script"
 date
