@@ -15,10 +15,17 @@ OpenFOAM model for turbulent air flow in a ventilator splitter and restrictor
     Laboratory for Turbulence Research in Aerospace & Combustion (LTRAC)
     Monash University, Australia
 
+## Disclaimer
+
+Modifying the operation of a ventilator is an unproven and high risk procedure that may endanger human life. Such activities should only be undertaken by trained medical professionals in a clinical setting. The authors of this project do not condone or endorse the use of ventilator splitting or other such modifications.
+
 ## License
 
-This software is released under the GNU GENERAL PUBLIC LICENSE v3.
-You may modify and distribute the code as long as you credit the originating authors of the work.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ##  Citing
 
