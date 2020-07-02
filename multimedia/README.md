@@ -31,28 +31,36 @@ If you use this software, please cite the following article:
 ## Table of Contents
 
 - 2way_1x2mmR_pce2_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
+
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
 
 - 2way_1x2mmR_pce3_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile with pressure control mode, that holds for a long inspiratory time.
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile with pressure control mode, that holds for a long inspiratory time.
 
 - 2way_1x2mmR_pce4_pip.mp4
-2-way splitter with differential compliances of 0.04/0.08 L/cmH2O. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
+
+	2-way splitter with differential compliances of 0.04/0.08 L/cmH2O. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
 
 - 2way_1x3mmR_pce2_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 3mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
+
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 3mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
 
 - 2way_1x3mmR_pce3_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 3mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile with pressure control mode, that holds for a long inspiratory time.
+
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 3mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile with pressure control mode, that holds for a long inspiratory time.
 
 - 2way_1x4mmR_pce2_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 4mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
+
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 4mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
 
 - 2way_1x4mmR_pce3_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 4mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile with pressure control mode, that holds for a long inspiratory time.
+
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. 4mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile with pressure control mode, that holds for a long inspiratory time.
 
 - 2way_noR_pce2_pip.mp4
-2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. No restrictors. Empirical ventilator profile in pressure control mode.
+
+	2-way splitter with differential compliances of 0.02/0.04 L/cmH2O. No restrictors. Empirical ventilator profile in pressure control mode.
 
 - 4way_1x2mmR_pce2_pip.mp4
-4-way splitter with differential compliances of 0.02 L/cmH2O on the 3 unrestricted ports and 0.04 L/cmH2O on the one restricted port. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
+
+	4-way splitter with differential compliances of 0.02 L/cmH2O on the 3 unrestricted ports and 0.04 L/cmH2O on the one restricted port. 2mm restrictor on the higher compliance patient's inspiratory circuit. Empirical ventilator profile in pressure control mode.
