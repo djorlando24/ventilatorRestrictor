@@ -15,7 +15,8 @@ OpenFOAM model for turbulent air flow in a ventilator splitter and restrictor
     Laboratory for Turbulence Research in Aerospace & Combustion (LTRAC)
     Monash University, Australia
 
-This preprint was submitted to <JOURNAL> on <DATE>.
+This preprint was submitted to ANAESTHESIA on 24 August 2020.
+The paper is currently under review, a preprint will be available shortly.
 Copyright is held by the authors.
 
 ## License
@@ -30,4 +31,4 @@ You should have received a copy of the GNU General Public License along with thi
 
 If you use this software, please cite the following article:
 
-CITATION GOES HERE
+CITATION GOES HERE ONCE ACCEPTED
