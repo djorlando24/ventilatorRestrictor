@@ -1,10 +1,10 @@
 # Mesh generation for 3d printed ventilator splitter and restrictors
 
     author Daniel Duke <daniel.duke@monash.edu>
-    copyright (c) 2020 Daniel Duke
+    copyright (c) 2021 Monash University
     license GPL-3.0+
     version 1.0.0
-    date 30/07/2020
+    date 07/05/2021
         __   ____________    ___    ______
        / /  /_  ____ __  \  /   |  / ____/
       / /    / /   / /_/ / / /| | / /

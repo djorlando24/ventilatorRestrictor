@@ -1,10 +1,10 @@
 # Multimedia results from ventilator splitter and restrictor simulations
 
     author Daniel Duke <daniel.duke@monash.edu>
-    copyright (c) 2020 Daniel Duke
+    copyright (c) 2021 Monash University
     license GPL-3.0+
     version 1.0.0
-    date 01/07/2020
+    date 07/05/2021
         __   ____________    ___    ______
        / /  /_  ____ __  \  /   |  / ____/
       / /    / /   / /_/ / / /| | / /
@@ -24,10 +24,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 ##  Citing
 
-If you use this software, please cite the following article:
-
-<CITATION GOES HERE>
-
+Information about citation will be added here at a later date. For now, please contact Dr. Duke if you wish to use this software in your research outputs.
+ 
 ## Table of Contents
 
 - 2way_1x2mmR_pce2_pip.mp4
