@@ -32,6 +32,14 @@
 
         cp -r 3e-08/polyMesh $MYCASE/constant/
 
+## Citing
+
+If you use anything from this repository in your research, don't cite github.com. Instead, please cite:
+
+Duke, D.J., Clarke, A.L., Stephens, A.L. et al. A computational fluid dynamics assessment of 3D printed ventilator splitters and restrictors for differential multi-patient ventilation. 3D Print Med 8, 2 (2022). https://doi.org/10.1186/s41205-021-00129-1
+
+https://threedmedprint.biomedcentral.com/articles/10.1186/s41205-021-00129-1
+
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.

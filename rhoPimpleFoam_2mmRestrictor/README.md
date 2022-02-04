@@ -14,6 +14,14 @@
     Laboratory for Turbulence Research in Aerospace & Combustion (LTRAC)
     Monash University, Australia
 
+## Citing this work
+
+If you use anything from this repository in your research, don't cite github.com. Instead, please cite:
+
+Duke, D.J., Clarke, A.L., Stephens, A.L. et al. A computational fluid dynamics assessment of 3D printed ventilator splitters and restrictors for differential multi-patient ventilation. 3D Print Med 8, 2 (2022). https://doi.org/10.1186/s41205-021-00129-1
+
+https://threedmedprint.biomedcentral.com/articles/10.1186/s41205-021-00129-1
+
 ## Simulation settings
 
 - 2 way 3d printed splitter

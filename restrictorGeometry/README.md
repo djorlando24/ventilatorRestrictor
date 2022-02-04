@@ -29,3 +29,11 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+## Citing
+
+If you use anything from this repository in your research, don't cite github.com. Instead, please cite:
+
+Duke, D.J., Clarke, A.L., Stephens, A.L. et al. A computational fluid dynamics assessment of 3D printed ventilator splitters and restrictors for differential multi-patient ventilation. 3D Print Med 8, 2 (2022). https://doi.org/10.1186/s41205-021-00129-1
+
+https://threedmedprint.biomedcentral.com/articles/10.1186/s41205-021-00129-1
